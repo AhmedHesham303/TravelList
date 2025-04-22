@@ -7,6 +7,9 @@ const initialItems = [
 
 export default function App() {
   const [items, setItems] = useState([]);
+  function handelDelete(id) {
+    setItems((items) => items.filter((item) => item.id !== id));
+  }
   function handelAddIems(item) {
     setItems((items) => [...items, item]);
   }
@@ -14,7 +17,7 @@ export default function App() {
     <div className="app">
       <Logo />
       <Form onAddItems={handelAddIems} />
-      <PackingList items={items} />
+      <PackingList items={items} onDeleteItem={handelDelete} />
       <Stats />
     </div>
   );
@@ -59,22 +62,22 @@ function Form({ onAddItems }) {
   );
 }
 
-function Item({ item }) {
+function Item({ item, onDeleteItem }) {
   return (
     <li>
       <span style={item.packed ? { textDecoration: "line-through" } : {}}>
         {item.quantity} {item.description}
       </span>
-      <button>❌</button>
+      <button onClick={() => onDeleteItem(item.id)}>❌</button>
     </li>
   );
 }
-function PackingList({ items }) {
+function PackingList({ items, onDeleteItem }) {
   return (
     <div className="list">
       <ul>
         {items.map((item) => (
-          <Item item={item} key={item.id} />
+          <Item item={item} key={item.id} onDeleteItem={onDeleteItem} />
         ))}
       </ul>
     </div>
