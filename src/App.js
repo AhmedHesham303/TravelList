@@ -7,6 +7,7 @@ const initialItems = [
 
 export default function App() {
   const [items, setItems] = useState([]);
+
   function handelDelete(id) {
     setItems((items) => items.filter((item) => item.id !== id));
   }
@@ -29,7 +30,7 @@ export default function App() {
         onDeleteItem={handelDelete}
         onToggleItem={handelToggleItems}
       />
-      <Stats />
+      <Stats items={items} />
     </div>
   );
 }
@@ -104,7 +105,8 @@ function PackingList({ items, onDeleteItem, onToggleItem }) {
     </div>
   );
 }
-function Stats() {
+function Stats({ items }) {
+  const numItems = items.length;
   return (
     <footer className="stats">
       <em>💼 you have X items in your list , and you already packed X (X%)</em>
