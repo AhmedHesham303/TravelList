@@ -1,6 +1,5 @@
-import { it } from "@faker-js/faker";
+import Logo from "../Components/Logo";
 import { useState } from "react";
-
 const initialItems = [
   { id: 1, description: "Passports", quantity: 2, packed: false },
   { id: 2, description: "Socks", quantity: 12, packed: true },
@@ -43,9 +42,7 @@ export default function App() {
     </div>
   );
 }
-function Logo() {
-  return <h1>🌴 Far Away 💼</h1>;
-}
+
 function Form({ onAddItems }) {
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState(1);
