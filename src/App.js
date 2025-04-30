@@ -112,7 +112,7 @@ function Stats({ items }) {
     <footer className="stats">
       <em>
         💼 you have {numItems} items in your list , and you already packed{" "}
-        {packedItems}({numItems / packedItems}%)
+        {packedItems}({(packedItems / numItems) * 100}%)
       </em>
     </footer>
   );
